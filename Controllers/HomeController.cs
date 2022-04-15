@@ -41,6 +41,7 @@ namespace BookDatabase.Controllers
             {
                 _db.Books.Add(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Book Added";
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -70,6 +71,7 @@ namespace BookDatabase.Controllers
             {
                 _db.Books.Update(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Book Updated";
                 return RedirectToAction("Index");
             }
             return View(obj);
