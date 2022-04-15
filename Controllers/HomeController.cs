@@ -24,6 +24,28 @@ namespace BookDatabase.Controllers
             return View(BookList);
         }
 
+        //Get information from user
+        public IActionResult CreatePage()
+        {
+
+            return View();
+        }
+
+        //Post info on book to database
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreatePage(Book obj)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                _db.Books.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
