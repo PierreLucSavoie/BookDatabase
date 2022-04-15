@@ -18,5 +18,7 @@ namespace BookDatabase.Models
 
         //will be used to identify if book belongs to specific user
         public int UserId { get; set; }
+
+        public bool Whishlist { get; set; }
     }
 }

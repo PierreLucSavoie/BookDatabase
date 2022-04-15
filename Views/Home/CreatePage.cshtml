@@ -24,6 +24,12 @@
             <span asp-validation-for="Author" class="text-danger"></span>
         </div>
 
+        <div class="mb-3">
+            <label asp-for="Whishlist">Add to Whishlist</label>
+            <input asp-for="Whishlist" class="form-control" />
+            <span asp-validation-for="Whishlist" class="text-danger"></span>
+        </div>
+
 
         <button type="submit" class="btn btn-success" style="width:150px">Confirm</button>
         <a asp-controller="Home" asp-action="Index" class="btn btn-danger" style="width:150px">Cancel</a>
