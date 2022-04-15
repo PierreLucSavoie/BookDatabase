@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "xYlojtFZgxTs0YAW/Hx8fg7eIhr9vY1e/VflJTn1uyE=",
+  "Hash": "aYIxvIvElIWwLJXvHY2HK7/gcgFZxgmSb4LmPmLEDns=",
   "Source": "BookDatabase",
   "BasePath": "_content/BookDatabase",
   "Mode": "Default",
@@ -1086,6 +1086,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "D:\\Projects\\BookDatabase\\BookDatabase\\wwwroot\\css\\Theme.css",
+      "SourceId": "BookDatabase",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Projects\\BookDatabase\\BookDatabase\\wwwroot\\",
+      "BasePath": "_content/BookDatabase",
+      "RelativePath": "css/Theme.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Theme.css"
     },
     {
       "Identity": "D:\\Projects\\BookDatabase\\BookDatabase\\wwwroot\\favicon.ico",
