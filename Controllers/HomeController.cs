@@ -1,4 +1,5 @@
 ﻿using BookDatabase.Models;
+using BookDatabase.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -8,20 +9,21 @@ namespace BookDatabase.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationDbContext _db;
+
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db)
         {
             _logger = logger;
+            _db = db;
         }
 
         public IActionResult Index()
         {
-            return View();
+            //retreive all books
+            IEnumerable<Book> BookList = _db.Books;
+            return View(BookList);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
