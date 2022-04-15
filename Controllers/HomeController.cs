@@ -36,10 +36,39 @@ namespace BookDatabase.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreatePage(Book obj)
         {
-            
+
             if (ModelState.IsValid)
             {
                 _db.Books.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+        }
+
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();  
+            }  
+            var book = _db.Books.Find(id);
+
+            if(book == null) { return NotFound(); }
+            
+            return View(book);
+        }
+
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Book obj)
+        {
+
+            if (ModelState.IsValid)
+            {
+                _db.Books.Update(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
