@@ -76,6 +76,36 @@ namespace BookDatabase.Controllers
             }
             return View(obj);
         }
+        //Get Method
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var book = _db.Books.Find(id);
+
+            if (book == null) { return NotFound(); }
+
+            return View(book);
+        }
+
+        //Post method
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteBook(int? id)
+        {
+
+            var obj = _db.Books.Find(id);
+            if(obj == null) { return NotFound(); }
+            
+            _db.Books.Remove(obj);
+            _db.SaveChanges();
+            TempData["success"] = "Book deleted";
+            return RedirectToAction("Index");
+            
+            
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
