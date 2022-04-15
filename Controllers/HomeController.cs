@@ -2,6 +2,7 @@
 using BookDatabase.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Identity;
 
 namespace BookDatabase.Controllers
 {
@@ -11,10 +12,13 @@ namespace BookDatabase.Controllers
 
         private readonly ApplicationDbContext _db;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db)
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db, UserManager<IdentityUser> userManager)
         {
             _logger = logger;
             _db = db;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -39,6 +43,7 @@ namespace BookDatabase.Controllers
 
             if (ModelState.IsValid)
             {
+                obj.UserId = _userManager.GetUserId(User);
                 _db.Books.Add(obj);
                 _db.SaveChanges();
                 TempData["success"] = "Book Added";
@@ -69,6 +74,7 @@ namespace BookDatabase.Controllers
 
             if (ModelState.IsValid)
             {
+                obj.UserId = _userManager.GetUserId(User);
                 _db.Books.Update(obj);
                 _db.SaveChanges();
                 TempData["success"] = "Book Updated";
