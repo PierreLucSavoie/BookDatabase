@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookDatabase.Models
 {
@@ -12,10 +14,13 @@ namespace BookDatabase.Models
         public int Year { get; set; }
         [Required]
         public string Author { get; set; }
-
-        //will implement image later
-        //public string? Image { get; set; }
-
+        
+        [NotMapped]
+        [DisplayName("Upload Image")]
+        public IFormFile BookImageFile { get; set; }
+        
+        //Path to the image file
+        public string? ImagePath { get; set; }
         //will be used to identify if book belongs to specific user
         public string? UserId { get; set; }
 

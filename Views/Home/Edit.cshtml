@@ -1,7 +1,7 @@
 ﻿@model Book
 
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div class= "border p-3 mt-4">
         <div class="row pb-2">
             <h2 class="text-primary">Edit Book</h2>
@@ -22,6 +22,12 @@
             <label asp-for="Author"></label>
             <input asp-for="Author" class="form-control" />
             <span asp-validation-for="Author" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="BookImageFile"></label>
+            <input asp-for="BookImageFile" accept="image/*" />
+            <span asp-validation-for="BookImageFile" class="text-danger"></span>
         </div>
 
         <div class="mb-3">

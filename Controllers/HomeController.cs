@@ -14,11 +14,15 @@ namespace BookDatabase.Controllers
 
         private readonly UserManager<IdentityUser> _userManager;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db, UserManager<IdentityUser> userManager)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db, UserManager<IdentityUser> userManager, IWebHostEnvironment webHostEnvironment)
         {
             _logger = logger;
             _db = db;
             _userManager = userManager;
+            _webHostEnvironment = webHostEnvironment;   
+
         }
 
         public IActionResult Index()
@@ -38,11 +42,27 @@ namespace BookDatabase.Controllers
         //Post info on book to database
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreatePage(Book obj)
+        public async Task<IActionResult> CreatePage(Book obj)
         {
 
             if (ModelState.IsValid)
             {
+                //code to save image in image folder
+                string rootPath = _webHostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(obj.BookImageFile.FileName);
+                string extension = Path.GetExtension(obj.BookImageFile.FileName);
+
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                obj.ImagePath = fileName;
+                
+
+                string path = Path.Combine(rootPath + "/image/", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await obj.BookImageFile.CopyToAsync(fileStream);
+                }
+
+
                 obj.UserId = _userManager.GetUserId(User);
                 _db.Books.Add(obj);
                 _db.SaveChanges();
@@ -60,7 +80,6 @@ namespace BookDatabase.Controllers
                 return NotFound();  
             }  
             var book = _db.Books.Find(id);
-
             if(book == null) { return NotFound(); }
             
             return View(book);
@@ -69,11 +88,28 @@ namespace BookDatabase.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Book obj)
+        public async Task<IActionResult> EditAsync(Book obj)
         {
 
             if (ModelState.IsValid)
             {
+
+                //code to save image in image folder
+                string rootPath = _webHostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(obj.BookImageFile.FileName);
+                string extension = Path.GetExtension(obj.BookImageFile.FileName);
+
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                obj.ImagePath = fileName;
+
+
+                string path = Path.Combine(rootPath + "/image/", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await obj.BookImageFile.CopyToAsync(fileStream);
+                }
+
+
                 obj.UserId = _userManager.GetUserId(User);
                 _db.Books.Update(obj);
                 _db.SaveChanges();
@@ -104,7 +140,14 @@ namespace BookDatabase.Controllers
 
             var obj = _db.Books.Find(id);
             if(obj == null) { return NotFound(); }
-            
+
+            //Finding the image file and deleting it from folder
+            var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "image", obj.ImagePath);
+            if(System.IO.File.Exists(imagePath))
+            {
+                System.IO.File.Delete(imagePath);
+            }  
+
             _db.Books.Remove(obj);
             _db.SaveChanges();
             TempData["success"] = "Book deleted";

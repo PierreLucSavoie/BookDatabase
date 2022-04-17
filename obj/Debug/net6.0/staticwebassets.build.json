@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "aYIxvIvElIWwLJXvHY2HK7/gcgFZxgmSb4LmPmLEDns=",
+  "Hash": "4EIIqulq8Lh3jGNQAl2b6WbbjZIdGleigEXAaSD7eu4=",
   "Source": "BookDatabase",
   "BasePath": "_content/BookDatabase",
   "Mode": "Default",
@@ -1120,6 +1120,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\Projects\\BookDatabase\\BookDatabase\\wwwroot\\image\\3487741220024938.jpg",
+      "SourceId": "BookDatabase",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Projects\\BookDatabase\\BookDatabase\\wwwroot\\",
+      "BasePath": "_content/BookDatabase",
+      "RelativePath": "image/3487741220024938.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\3487741220024938.jpg"
+    },
+    {
+      "Identity": "D:\\Projects\\BookDatabase\\BookDatabase\\wwwroot\\image\\3487741221134726.jpg",
+      "SourceId": "BookDatabase",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Projects\\BookDatabase\\BookDatabase\\wwwroot\\",
+      "BasePath": "_content/BookDatabase",
+      "RelativePath": "image/3487741221134726.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image\\3487741221134726.jpg"
     },
     {
       "Identity": "D:\\Projects\\BookDatabase\\BookDatabase\\wwwroot\\js\\site.js",
